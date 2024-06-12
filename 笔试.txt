@@ -1,4 +1,4 @@
-第1章 Spring boot开发入门
+         第1章 Spring boot开发入门
 一、填空题
 1、Pivotal团队在原有Spring框架的基础上开发了全新的Spring Boot框架。
 2、Spring Boot框架在开发过程中大量使用约定优先配置的思想来摆脱框架中各种复杂的手动配置。
@@ -37,7 +37,8 @@ A．@SpringBootApplication只包含@SpringBootConfiguration、@EnableAutoConfigu
 B．@SpringBootConfiguration注解表示当前类为一个配置类并可以被组件扫描器扫描    
 C．@EnableAutoConfiguration作用是启动自动配置，向容器中导入所有选中的自动配置类。
 D．@ComponentScan注解主要作用是扫描指定包及其子包下所有注解类文件作为Spring容器的组件使用
-第2章Spring boot核心配置与注解
+
+         第2章Spring boot核心配置与注解
 
 一、填空题
 1、Properties配置文件以__K=V_形式的行内式写法进行配置属性展示。
@@ -79,7 +80,7 @@ C．可以在项目全局配置文件中配置spring.profiles.active属性激活
 D．在多个自定义类上直接使用@Profile注解可以进行多环境配置
 
 
-第3章 Spring Boot数据访问
+         第3章 Spring Boot数据访问
 
 一、填空题
 1、MyBatis为了利用Spring Boot便利性，适配了对应的依赖启动器_mybatis-spring-boot-starter_。
@@ -121,7 +122,7 @@ C．使用Redis数据库，必须为实体类属性添加@Indexed属性生成二
 D．编写操作Redis数据库的Repository接口文件时，需要继承JpaRepository接口
 
 
-第4章 Spring Boot视图技术
+         第4章 Spring Boot视图技术
 
 一、填空题
 1、针对于WebFlux框架的整合实现，Spring Boot则实现了与_FreeMarker_、Thymeleaf和Mustache模板引擎技术的整合支持和自动化配置。
@@ -162,7 +163,7 @@ B．项目根路径下的resources及其子文件夹下
 C．项目根路径下的static文件夹下
 D．项目根路径下的public及其子文件夹下
 
-	第5章 Spring Boot实现Web开发 
+	 第5章 Spring Boot实现Web开发 
 
 一、填空题
 1、Spring Boot项目中定制Spring MVC的扩展功能，需要提供实现_WebMvcConfigurer_接口的配置类。
@@ -204,7 +205,7 @@ C．必须让主程序启动类继承SpringBootServletInitializer类并实现con
 D．以War包方式部署项目进行访问，必须在访问路径上添加打包后的项目名
 
 
-第6章 Spring Boot缓存管理
+         第6章 Spring Boot缓存管理
 
 一、填空题
 1、Spring Boot中，_@EnableCaching_注解用于开启基于注解的缓存支持。
@@ -245,7 +246,7 @@ B．在定制序列化方式中，要定义一个ObjectMapper用于进行数据�
 C．Spring Boot 1.X版本中，定制RedisTemplate组件序列化配置后，就完成了基于API和注解方式Redis序列化的定制
 D．使用自定义RedisTemplate序列化机制缓存存储实体类数据，实体类不用再实现序列化
 
-第7章 Spring Boot安全管理
+         第7章 Spring Boot安全管理
 
 一、填空题
 1、Spring Boot整合Spring Security安全框架实现的安全管理功能有_MVC Security_、WebFlux Security、OAuth2、Actuator Security。
@@ -287,7 +288,7 @@ C．sec:authorize="hasAuthority('ROLE_vip')"用于判断用户是否有ROLE_vip�
 D．sec:authentication="name"属性用于显示登录用户名name
 
 
-第8章 Spring Boot消息服务
+         第8章 Spring Boot消息服务
 
 一、填空题
 1、目前开源的消息中间件常用的有_ActiveMQ_、RabbitMQ、Kafka、RocketMQ等。
@@ -328,7 +329,7 @@ B．@RabbitListener标记在消息消费者方法上，会立即监听并消费�
 C．@RabbitListener注解的queues属性可以定制消息队列
 D．@QueueBinding注解包括有value、type、key等属性
 
-第9章 Spring Boot任务管理
+          第9章 Spring Boot任务管理
 
 一、填空题
 1、Spring Boot中使用_@EnableAsync_注解来开启基于注解的异步任务支持。
