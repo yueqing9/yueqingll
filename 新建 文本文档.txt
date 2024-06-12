@@ -1,0 +1,372 @@
+第1章 Spring boot开发入门
+一、填空题
+1、Pivotal团队在原有Spring框架的基础上开发了全新的Spring Boot框架。
+2、Spring Boot框架在开发过程中大量使用约定优先配置的思想来摆脱框架中各种复杂的手动配置。
+3、Spring Boot 2.1.3版本要求Java 8及以上版本的支持。
+4、Spring Boot 2.1.3版本框架官方声明支持的第三方项目构建工具包括有Maven(3.3+)和Gradle(4.4+)。
+5、@RestController注解是一个组合注解，主要包含@Controller和_@ResponseBody两个核心注解。
+二、判断题
+1、Spring Boot 2.1.3版本要求Java 7及以上版本的支持，同时兼容Java 11。（✗）
+2、Spring Initializr搭建Spring Boot项目，可以选择任意不同的Spring Boot版本，而无需修改。（ ✗）
+3、使用Spring Initializr搭建的Spring Boot项目会默认生成项目启动类。（ ✓）
+4、编写单元测试需要提前加入spring-boot-starter-test测试依赖启动器。（ ✓）
+5、Spring Boot提供了对所有第三方技术框架的整合支持和版本管理。（✗ ）
+三、选择题
+1、以下选项中，哪些属于Spring Boot的优点？（ACD ）（多选）
+A、可快速构建独立的Spring应用
+B、无需打包即可快速部署  
+C、提供依赖启动器简化构建配置
+D、极大程度的自动化配置Spring和第三方库
+2、IDEA界面中，【Configure】→【Project Defaults】中的Project Structure主要作用是（ A ）
+A、用于全局JDK初始化设置 
+B、用于全局Maven初始化设置 
+C、用于全局运行环境设置    
+D、以上都不对
+3、下列关于Spring Boot项目各个包作用的说法，正确的是（ ABCD ）（多选）
+A、resources下static中用于存放静态资源文件 
+B、resources下templates中用于存放模板文件       
+C、application.properties是项目的全局配置文件  
+D、以上都正确
+4、下列关于Spring Boot依赖管理的说法，正确的是（ B ）
+A、spring-boot-starter-parent父依赖可以为项目提供整合的子依赖文件   
+B、spring-boot-starter-parent父依赖可以为项目提供整合的子依赖版本管理
+C、Web场景开发依赖spring-boot-starter-web可以针对所有Web场景开发      
+D、Web场景开发依赖spring-boot-starter-web的版本需要自行管理
+5、下列关于Spring Boot自动配置原理的说法，错误的是（ A ）
+A．@SpringBootApplication只包含@SpringBootConfiguration、@EnableAutoConfiguration、@ComponentScan三个注解        
+B．@SpringBootConfiguration注解表示当前类为一个配置类并可以被组件扫描器扫描    
+C．@EnableAutoConfiguration作用是启动自动配置，向容器中导入所有选中的自动配置类。
+D．@ComponentScan注解主要作用是扫描指定包及其子包下所有注解类文件作为Spring容器的组件使用
+第2章Spring boot核心配置与注解
+
+一、填空题
+1、Properties配置文件以__K=V_形式的行内式写法进行配置属性展示。
+2、Spring Boot项目的的默认全局配置文件是在_resources_目录下的application.properties文件。
+3、Spring Boot自定义配置属性提供了一个配置处理器依赖_spring-boot-configuration-processor_。
+4、在Spring Boot项目中，YAML格式配置文件名通常会定义为_application.yaml和_application.yml_。
+5、YAML配置文件的内容是_key:(空格)value_形式的键值对，并使用缩进式写法表示层级关系。
+二、判断题
+1、Spring Boot 配置文件中，对于字符串类型的属性值，不需要额外添加引号。（ ✓ ）
+2、使用@ConfigurationProperties注解注入属性值时，必须为对应属性提供setXX()方法。（ ✓）
+3、@Value注解是Spring Boot框架提供的，用来读取配置文件中的属性值并逐个注入到Bean对象的对应属性中。（✗ ）
+4、@Value注解能支持各种数据类型的属性读取和注入。（✗ ）
+5、Spring Boot中要可以使用@PropertiesResource注解引入XML自定义配置文件。（✗ ）
+三、选择题
+1、下列关于Spring Boot全局配置文件的说法，正确的是（ABCD ）（多选）
+A、Spring Boot支持application.properties全局配置文件
+B、Spring Boot支持application.yaml全局配置文件
+C、Spring Boot支持application.yml全局配置文件
+D、Spring Boot全局配置文件必须在项目resources根目录下
+2、下列关于YAML配置文件的说法，正确的是（A）
+A、YAML配置文件的内容是“key: value”形式的键值对，并使用缩进式写法
+B、YAML配置文件的行内式写法配置单列集合属性，包含属性值的中括号“[]”可以省略
+C、YAML配置文件的行内式写法配置双列集合属性，包含属性值的中括号“{}”可以省略 
+D、以上都不对
+3、下列选项中，哪些是使用@ConfigurationProperties注解进行属性值注入时需要注意的（AB）（多选）
+A、在类上添加@ConfigurationProperties注解和prefix或者value属性 
+B、必须为Bean属性提供setXX()方法       
+C、必须在对应的Bean类上添加@Component注解  
+D、必须在类上使用@EnableConfigurationProperties注解开启属性注入功能
+4、下列关于@ConfigurationProperties和@Value注解的说法，正确的是（ C）
+A、@ConfigurationProperties和@Value注解都是Spring Boot框架自带的   
+B、进行属性值注入时，@ConfigurationProperties和@Value注解配置中必须设置属性的setXX()方法
+C、@ConfigurationProperties注解进行配置文件属性值注入时，支持JSR303数据校验      
+D、@Value注解进行配置文件属性值注入时，支持松散绑定语法
+5、下列关于Spring Boot的Profile多环境配置的说法，错误的是（ D）
+A．Spring Boot提供了两种多环境配置的方式：Profile文件多环境配置和@Profile注解多环境配置        
+B．Profile配置文件的名必须满足application-{profile}.properties的格式    
+C．可以在项目全局配置文件中配置spring.profiles.active属性激活指定的多环境配置文件
+D．在多个自定义类上直接使用@Profile注解可以进行多环境配置
+
+
+第3章 Spring Boot数据访问
+
+一、填空题
+1、MyBatis为了利用Spring Boot便利性，适配了对应的依赖启动器_mybatis-spring-boot-starter_。
+2、Spring Boot 2.x版本默认使用的是_hikari____数据源。
+3、在Spring Boot项目启动类上添加_@MapperScan(“xxx”)_注解，来替代@Mapper注解。
+4、Spring Data JPA中，@Entity标注在类上，还要使用_name_属性指定具体映射的表名。
+5、Redis提供了多种功能特性，可用作非关系型数据库、缓存插件、_消息中间件_等。
+二、判断题
+1、Spring Boot官方为所有常用技术框架都提供了对应的依赖启动器。（ ✗）
+2、Spring Boot为整合MyBatis技术框架提供了版本管理。（ ✗）
+3、Spring Boot操作MySQL数据库时，还必须配置指定的数据源类型。（✗ ）
+4、Spring Boot全局配置文件设置Druid数据源相关参数后，还需要自定义配置类注入这些属性。（ ✓）
+5、Spring Boot JPA中映射的实体类属性上的@Column注解可以省略。（ ✓）
+三、选择题
+1、下列关于Spring Boot整合MyBatis实现的说法，正确的是（ C）
+A、Spring Boot整合MyBatis必须提供mybatis-spring-boot-starter依赖
+B、@MapperScan("xxx")注解的作用和@Mapper注解一样
+C、在全局配置文件中配置MyBatis的XML映射文件位置要使用mybatis.mapper-locations属性
+D、使用注解方式编写MyBatis接口文件数据修改方法时，还需要使用@Transactional注解
+2、下列关于Spring Data JPA映射的实体类中相关注解的说法，正确的是（D ）
+A、使用Spring Data JPA进行数据查询映射时，需要在配置文件中开启驼峰命名映射
+B、使用@Entity注解时，还要使用name属性指定具体映射的表名
+C、@Id注解必须标注在类属性上，表示主键对应的属性
+D、@Transient注解表示指定属性不是到数据库表的字段的映射，ORM框架将忽略该属性
+3、使用Spring Boot整合Spring Data JPA编写Repository接口时，说法错误的是（BCD ）（多选）
+A、自定义Repository接口可以继承CurdRepository接口 
+B、可以在方法上添加@Update注解结合SQL语句实现数据修改       
+C、可以在方法上添加@Delete注解结合SQL语句实现数据删除 
+D、进行数据变更操作时，必须在Repository接口方法上添加@Transactional注解
+4、Redis 是一个开源内存中的数据结构存储系统，可以用作（ABCD ）（多选） 
+A、数据库   
+B、缓存中间件
+C、消息中间件      
+D、以上都正确
+5、当Redis作为数据库时，与Spring Boot整合使用的相关说明，正确的是（ A）
+A．@RedisHash("persons")用于指定操作实体类对象在Redis数据库中的存储空间        
+B．@Id用于标识实体类主键，需要手动指定id生成策略    
+C．使用Redis数据库，必须为实体类属性添加@Indexed属性生成二级索引
+D．编写操作Redis数据库的Repository接口文件时，需要继承JpaRepository接口
+
+
+第4章 Spring Boot视图技术
+
+一、填空题
+1、针对于WebFlux框架的整合实现，Spring Boot则实现了与_FreeMarker_、Thymeleaf和Mustache模板引擎技术的整合支持和自动化配置。
+2、Thymeleaf是适用于_Web_和独立环境的现代服务器端Java模板引擎。
+3、针对HTML页面处理，Thymeleaf的_th:each_属性可以进行数据遍历。
+4、使用Thymeleaf模板进行HTML页面处理，可以使用_data-th-*_属性替换th:*属性进行页面开发。
+5、Thymeleaf模板中使用_${#locale.country}_可以动态获取当前用户所在国家信息。
+二、判断题
+1、Spring Boot不能使用JSP进行项目开发。（ ✗）
+2、使用Jetty嵌入式容器部署Spring Boot项目，也不支持JSP模板。（✗ ）
+3、Thymeleaf是针对Web开发中HTML静态页面的处理，实现动态数据展示。（✗ ）
+4、Spring Boot中编写国际化时，必须要在全局配置文件进行国际化文件配置。（ ✗）
+5、国际化文件的名称必须严格按照“文件前缀名_语言代码_国家代码.properties”的形式命名。（ ✓）
+三、选择题
+1、以下选项中，Spring Boot整合Spring MVC框架支持的，模板引擎技术有（ABCD ）（多选）
+A、FreeMarker
+B、Groory
+C、Mustache
+D、Thymeleaf
+2、关于Spring Boot整合JSP模板技术的限制，以下说法错误的是（D ）
+A、Spring Boot默认的JAR包部署方式不支持JSP模板
+B、Undertow嵌入式容器部署Spring Boot项目，不支持JSP模板
+C、使用JSP模板时，无法对默认的错误处理器进行覆盖
+D、使用JSP模板时，无法自定义错误页面
+3、Thymeleaf支持处理哪些模板页面（ABCD ）（多选）
+A、HTML 
+B、XML       
+C、JS
+D、CSS
+4、以下关于Thymeleaf模板中th:*属性及说法错误的是（ A） 
+A、th:forEach属性用来进行数据遍历
+B、th:utext属性进行文本内容展示，且不进行转义
+C、th:fragment属性用来声明片段      
+D、th:value属性用于内容修改
+5、Spring Boot中，可以存放静态资源文件的位置有（ABCD ）（多选）
+A．项目根路径下的/META-INF/resources/文件夹下       
+B．项目根路径下的resources及其子文件夹下   
+C．项目根路径下的static文件夹下
+D．项目根路径下的public及其子文件夹下
+
+	第5章 Spring Boot实现Web开发 
+
+一、填空题
+1、Spring Boot项目中定制Spring MVC的扩展功能，需要提供实现_WebMvcConfigurer_接口的配置类。
+2、WebMvcConfigurer接口中的_addViewControllers()_方法可以定制视图管理。
+3、WebMvcConfigurer接口中的_addInterceptors()_方法可以定制自定义的拦截器。
+4、Spring Boot中，使用路径扫描方式整合Servlet组件时，需要用_@ServletComponentScan_注解开启组件扫描。
+5、Spring Boot整合Spring MVC实现文件上传时，默认单个文件上传大小限制为_1MB_。
+二、判断题
+1、Spring Boot为整合Spring MVC实现Web开发提供了欢迎页index.html支持。（✓ ）
+2、Spring Boot中实现Spring MVC的扩展功能，要提供实现WebMvcConfigurer接口的配置类，并开启@EnableWebMvc注解。（ ✗）
+3、Spring Boot中整合Servlet的Listener组件时，在自定义Listener上添加@Component即可生效。（✓ ）
+4、Spring Boot整合Spring MVC实现中文名文件下载时，针对IE内核浏览器需要转码为UTF-8。（✓ ）
+5、Spring Boot提供的打包插件spring-boot-maven-plugin可以将项目打成Jar包和War包。（ ✓）
+三、选择题
+1、Spring Boot为整合Spring MVC实现Web开发，提供的功能特性不包括（C ）
+A、配置视图解析器
+B、对WebJars的支持
+C、对拦截器的自动配置
+D、对HttpMessageConverters消息转换器的支持
+2、Spring Boot整合Servlet组件涉及到的注册Bean组件有（ACD ）（多选）
+A、ServletRegistrationBean
+B、InterceptorRegistrationBean
+C、FilterRegistrationBean
+D、ServletListenerRegistrationBean
+3、Spring Boot中使用路径扫描的方式整合内嵌式Servlet组件时，需要使用的注解有（ ABC ）（多选）
+A、@WebFilter
+B、@ServletComponentScan
+C、@WebListener
+D、@WebInterceptor
+4、下列关于Spring Boot整合Spring MVC实现文件上传及下载的说法中，正确的是（ B ） 
+A、必须使用spring.servlet.multipart.max-file-size来设置单个上传文件的大小限制
+B、处理上传文件方法中可以使用List<MultipartFile>类型的参数，来接收处理单个或多个上传文件
+C、文件上传存储目录“F:/file/”需要提前创建好      
+D、对中文文件进行下时，如果没有进行中文转换，下载的中文文件内容会出现乱码
+5、下列关于Spring Boot项目War包方式打包部署的说法中，错误的是（C ）
+A．必须使用<packaging>标签将Spring Boot项目默认的Jar包方式修改为War     
+B．需要将spring-boot-starter-tomcat使用<scope>provided</scope>声明为已提供provided   
+C．必须让主程序启动类继承SpringBootServletInitializer类并实现configure()方法
+D．以War包方式部署项目进行访问，必须在访问路径上添加打包后的项目名
+
+
+第6章 Spring Boot缓存管理
+
+一、填空题
+1、Spring Boot中，_@EnableCaching_注解用于开启基于注解的缓存支持。
+2、_@Cacheable_注解是由Spring框架提供的，通常用在数据查询缓存方法上。
+3、Spring Boot中进行缓存存储时，对于一个参数的方法，其key值是_默认参数值_。
+4、Simple缓存组件是Spring Boot默认的缓存管理组件，它默认使用内存中的_ConcurrentHashMap_进行缓存存储。
+5、Redis操作客户端类中，_StringRedisTemplate_专门针对<String, String>字符串类型的数据进行操作。
+二、判断题
+1、@EnableCaching是Spring Boot框架提供的用于开启基于注解的缓存支持。（✗ ）
+2、@Cacheable注解的cacheNames属性名可以省略。（✓ ）
+3、@Cacheable注解的unless属性在指定条件为true，方法的返回值就不会被缓存。（ ✓）
+4、在对实体类数据进行Redis默认缓存存储时，如果没有实现序列化，就会出现类型转换异常的错误。（ ✗）
+5、自定义RedisTemplate组件时，方法名必须是redisTemplate。（ ✗）
+三、选择题
+1、下列关于Spring Boot中提供的缓存管理的相关注解的说法，正确的是（ D）。
+A、@EnableCaching是Spring Boot框架提供的用于开启基于注解的缓存支持
+B、@Cacheable注解作用于方法上，用来对询结果进行缓存
+C、@CacheEvict注解用于更新缓存数据
+D、@CacheConfig注解使用在类上，主要用于统筹管理类中所有使用@Cacheable、@CachePut和@CacheEvict注解标注方法中的公共属性
+2、下列关于Spring Boot中Redis缓存注解相关属性说法，错误的是（C ）。
+A、value和cacheNames属性作用相同，用于指定缓存的名称空间
+B、key属性作用就是指定缓存数据对应的唯一标识，默认使用注解标记的方法参数值
+C、unless属性的作用是当指定的条件为true，方法的返回值就会被缓存
+D、sync属性表示数据缓存过程中是否使用异步模式，默认值为false
+3、下列关于Spring Boot中RedisTemplate进行数据缓存管理的说法，正确的是（ACD ）（多选）
+A、RedisTemplate是Spring Data Redis提供的可以对<Object,Object >类型数据进行操作
+B、RedisTemplate类的set()方法可以进行数据缓存存储
+C、RedisTemplate类的delete()方法可以进行缓存数据删除
+D、RedisTemplate类的expire()方法可以设置缓存有效期
+4、Spring Boot中支持的缓存组件包括有（ABCD ）（多选）。 
+A、JCache
+B、EhCache 2.x
+C、Redis      
+D、Caffeine
+5、下列关于将Spring Boot定制Redis缓存序列化机制的说法，错误的是（ A）。
+A．自定义redisTemplate组件时，方法名必须为redisTemplate     
+B．在定制序列化方式中，要定义一个ObjectMapper用于进行数据转换设置   
+C．Spring Boot 1.X版本中，定制RedisTemplate组件序列化配置后，就完成了基于API和注解方式Redis序列化的定制
+D．使用自定义RedisTemplate序列化机制缓存存储实体类数据，实体类不用再实现序列化
+
+第7章 Spring Boot安全管理
+
+一、填空题
+1、Spring Boot整合Spring Security安全框架实现的安全管理功能有_MVC Security_、WebFlux Security、OAuth2、Actuator Security。
+2、Security默认提供一个可登录的用户信息，用户名为user，密码_随机生成_。
+3、重写WebSecurityConfigurerAdapter类的_configure(AuthenticationMangerBuilder auth)_方法可以自定义用户认证。
+4、重写WebSecurityConfigurerAdapter类的_configure(HttpSecurity http)_方法可以对基于HTTP的请求访问进行控制。
+5、自定义WebSecurityConfigurerAdapter类上的_@EnableWebFluxSecurity_注解用于开启基于WebFlux Security安全支持。
+二、判断题
+1、项目中引入spring-boot-starter-security依赖后，还需要使用@EnableSecurity开启安全管理支持。（✗ ）
+2、WebSecurityConfigurerAdapter类的configure(HttpSecurity http)方法用于构建认证管理器。（✗ ）
+3、初始化权限表数据时，权限值必须带有“ROLE_”前缀。（✓ ）
+4、定义JDBC身份认证时，定义权限查询的SQL语句必须返回用户名、密码和权限几个字段信息。（✗ ）
+5、定义UserDetailsService身份认证时，如果用户为空，需要抛出UserNotFoundException异常。（✗ ）
+三、选择题
+1、Spring Security提供了多种自定义认证方式，包括有（ABCD ）（多选）。
+A、JDBC Authentication
+B、LDAP Authentication
+C、AuthenticationProvider
+D、UserDetailsService
+2、下列关于使用JDBC身份认证方式创建用户/权限表以及初始化数据性说法，错误的是（ D）。
+A、用户表中的用户名username必须唯一
+B、创建用户表时，必须额外定义一个tinyint类型的字段
+C、初始化用户表数据时，插入的用户密码必须是对应编码器编码后的密码
+D、初始化角色表数据时，角色值必须带有“ROLE_”前缀
+3、下列关于configure(HttpSecurity http)方法中参数HttpSecurity类的说法，正确的是（ABCD ）（多选）
+A、authorizeRequests()方法开启基于HttpServletRequest请求访问的限制
+B、formLogin()方法开启基于表单的用户登录
+C、rememberMe()方法开启记住我功能
+D、csrf()方法配置CSRF跨站请求伪造防护功能
+4、下列关于自定义用户登录中的相关说法，错误的是（B ）。 
+A、loginPage(String loginPage) 指定用户登录页面跳转路径，默认为get请求的/login
+B、failureUrl(String authenticationFailureUrl)指定用户登录失败后的跳转地址，默认为/login?failure
+C、loginProcessingUrl(String loginProcessingUrl)指定登录表单提交的路径，默认为post请求的/login
+D、项目加入Security后，可以不对static文件夹下的静态资源文件进行统一放行处理
+5、下列关于使用Security整合Thymeleaf实现页面的管理的说法，错误的是（B ）。
+A．Spring Boot 2.1.3版本中添加thymeleaf-extras-springsecurity5依赖不需要手动指定版本号     
+B．sec:authorize="! isAuthenticated()"用于判断用户没有认证   
+C．sec:authorize="hasAuthority('ROLE_vip')"用于判断用户是否有ROLE_vip权限
+D．sec:authentication="name"属性用于显示登录用户名name
+
+
+第8章 Spring Boot消息服务
+
+一、填空题
+1、目前开源的消息中间件常用的有_ActiveMQ_、RabbitMQ、Kafka、RocketMQ等。
+2、RabbitMQ是基于_AMQP_协议的轻量级、可靠、可伸缩和可移植的消息代理。
+3、在Work queues工作模式中，连接消息队列的多个消息消费者通过_轮询_的方式消费消息。
+4、在Publish/Subscribe工作模式中，必须先配置一个_fanout_类型的交换器。
+5、RabbitMQ服务默认提供了两个端口号_5672_和_15672_。
+二、判断题
+1、ActiveMQ性能相对较好，在如今的高并发、大数据处理的场景下非常适用。（ ✗）
+2、ActiveMQ是Apache出品的、采用Java语言编写的基于JMS规范的面向消息的中间件。（✓ ）
+3、RabbitMQ中的Work queues工作模式不需要设置交换器。（ ✓）
+4、在Publish/Subscribe工作模式中，每个消息消费者都会接收消息。（✓ ）
+5、Spring Boot中加入RabbitMQ依赖后，无需任何配置可以使用RabbitMQ消息中间件。（ ✓）
+三、选择题
+1、开发中，使用到消息服务的需求场景主要包括（ABCD ）（多选）。
+A、异步处理
+B、应用解耦
+C、流量削锋
+D、分布式事务管理
+2、以下关于消息中间件的说法，错误的是（D ）。
+A、RabbitMQ是使用Erlang语言开发的开源消息队列系统，基于AMQP协议
+B、Redis服务可以作为消息中间件提供服务
+C、RocketMQ是Apache的顶级项目，具有高吞吐量、高可用等特点
+D、ActiveMQ是Apache出品的、基于JMS协议的高性能中间件
+3、RabbitMQ中提供了哪几种交换器类型（ ABCD）（多选）
+A、direct
+B、fanout
+C、topic
+D、headers
+4、RabbitMQ提供的工作模式不包括（ A）。 
+A、单点模式
+B、发布订阅模式
+C、路由模式      
+D、Headers模式
+5、以下关于基于注解方式定制RabbitMQ消息组件中的相关注解及说法，错误的是（ A）。
+A．需要使用@EnableRabbit开启基于注解的支持     
+B．@RabbitListener标记在消息消费者方法上，会立即监听并消费消息队列中的消息   
+C．@RabbitListener注解的queues属性可以定制消息队列
+D．@QueueBinding注解包括有value、type、key等属性
+
+第9章 Spring Boot任务管理
+
+一、填空题
+1、Spring Boot中使用_@EnableAsync_注解来开启基于注解的异步任务支持。
+2、Spring 框架提供了一个_@Async_注解来定义异步方法。
+3、Spring Boot中处理有返回值的异步方法中，可以定义返回值设为_Future_类型。
+4、@Scheduled注解的_fixedDelay或fixedDelayString_属性表示在上一次任务执行结束后在指定时间后继续执行下一次任务。
+5、Spring Boot需要在项目启动类上使用_@EnableScheduling_注解来开启基于注解的定时任务支持。
+二、判断题
+1、@EnableScheduling注解是Spring Boot提供的，用于开启基于注解方式的定时任务支持。（✗ ）
+2、@Scheduled注解的fixedRate属性表示每隔指定时间执行一次任务。（ ✓）
+3、@Scheduled注解的cron属性值中星期字段值0表示星期一。（ ✗）
+4、@Scheduled注解的fixedRate用来指定每相隔一段时间重复执行一次定时任务，单位是毫秒。（✓ ）
+5、Spring Boot中配置QQ邮件服务器用户信息时，要配置准确的用户名和密码。（ ✗）
+三、选择题
+1、以下关于Spring Boot中异步任务的使用及说明，错误的是（C ）。
+A、Spring Boot项目中引入spring-boot-starter-web依赖后可以进行异步任务管理
+B、@EnableAsync注解来开启基于注解的异步任务支持
+C、对于所有异步任务，主线程方法会与其他异步方法同时进行，不受干扰
+D、异步任务可以极大的缩减总流程的执行时间
+2、以下关于@Scheduled的相关属性，说法正确的是（ D）。
+A、cron属性表示cron的表达式，可以定制定时任务的秒、分钟、小时、日、月、星期、年
+B、zone指定cron表达式将被解析的时区，默认为Asia/Shanghai
+C、fixedRate表示在上一次任务执行结束后在指定时间后继续执行下一次任务
+D、initialDelayString表示在fixedRate或fixedDelay任务第一次执行之前要延迟的毫秒数
+3、以下关于定时任务注解中表示每月的26日每一分钟都执行，写法正确的是（A ）。
+A、@Scheduled(cron = "0 * * 26 * ?")
+B、@Scheduled(cron = "0 0 0 26 * ?")
+C、@Scheduled(cron = "0 * * 26 * *")
+D、@Scheduled(cron = "* * * 26 * ?")
+4、以下关于Spring Boot中发送复杂邮件的相关说法，正确的是（ AB）（多选）。 
+A、发送复杂邮件，需要创建MimeMessage对象
+B、发送复杂邮件，需要使用MimeMessageHelper并设置multipart多部件使用为true
+C、通过FileResource对象可以构建发送的附件或内置资源文件      
+D、添加邮件内置静态资源文件需要使用MimeMessageHelper的addAttachment()方法
+5、以下关于Spring Boot中借助Thymeleaf发送模板邮件的相关说法，正确的是（ ABCD）（多选）。
+A．需要使用MimeMessageHelper帮助类，并设置multipart多部件使用为true     
+B．需要使用Context对象定制邮件动态内容   
+C．需要使用析器TemplateEngine的process(String template, IContext context)方法进行模板解析
+D．可以通过数组的形式一次向多用户发送邮件
+
+
